@@ -8,7 +8,7 @@ unsigned long frame[] = { 0, 0, 0 };  // 3 32-bit unsigned longs can holds 96 bi
 
 void set_bit(size_t bit, bool on) {
   int index = bit / 32;
-  int offset = 32 - (bit % 32);
+  int offset = 31 - (bit % 32);
   if (on) {
     frame[index] |= (1 << offset);
   } else {
@@ -39,5 +39,5 @@ void loop() {
   }
   set_bit(bit, true);
   matrix.loadFrame(frame);
-  delay(100);
+  delay(500);
 }

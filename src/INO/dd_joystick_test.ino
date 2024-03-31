@@ -13,7 +13,7 @@ unsigned long frame[] = { 0, 0, 0 };  // 3 32-bit unsigned longs can holds 96 bi
 
 void set_bit(size_t bit, bool on) {
   int index = bit / 32;
-  int offset = 32 - (bit % 32);
+  int offset = 31 - (bit % 32);
   if (on) {
     frame[index] |= (1 << offset);
   } else {
@@ -33,9 +33,12 @@ void setup() {
 
   joystickLayer = dumbdisplay.createJoystickLayer(JOYSTICK_SIZE - 1);
   joystickLayer->border(3, "darkblue", "round", 1);
+
+  set_bit(0, true);
+  matrix.loadFrame(frame);
 }
 
-int prev_bit = -1;
+int prev_bit = 0;
 void loop() {
   const DDFeedback* fb = joystickLayer->getFeedback();
   if (fb != NULL) {
