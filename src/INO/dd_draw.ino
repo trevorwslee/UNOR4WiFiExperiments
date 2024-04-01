@@ -52,12 +52,10 @@ void setup() {
     } else {
       offset2 = (bit + 12) % 32;
     }
-    //dumbdisplay.writeComment("index: " + String(index) + " offset: " + String(offset) + " offset2: " + String(offset2));
     unsigned int bits = frame[index] << offset;
     if (offset2 != -1) {
       bits |= frame[index + 1] >> (32 - offset);
     }
-    //dumbdisplay.writeComment("index: " + String(index) + " offset: " + String(offset) + " offset2: " + String(offset2) + " bits: " + String(bits));
     ddMatrix->bitwise(bits, y, true);
     bit += 12;
   }
@@ -82,6 +80,10 @@ void loop() {
       ddMatrix->toggle(x, y);
       toggle_bit(x, y);
       matrix.loadFrame(frame);
+    }
+    if (true) {
+      String frameCode = "unsigned long frame[] = {0x" + String(frame[0], HEX) + ",0x" + String(frame[1], HEX) + ",0x" + String(frame[2], HEX) + "};";
+      dumbdisplay.writeComment(frameCode);
     }
   }
 }

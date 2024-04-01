@@ -3,12 +3,6 @@
 
 ArduinoLEDMatrix matrix;
 
-DumbDisplay dumbdisplay(new DDWiFiServerIO(WIFI_SSID, WIFI_PASSWORD));
-JoystickDDLayer *joystickLayer;
-
-
-const size_t JOYSTICK_SIZE = 240;
-
 unsigned long frame[] = { 0, 0, 0 };  // 3 32-bit unsigned longs can holds 96 bits
 
 void set_bit(size_t bit, bool on) {
@@ -27,13 +21,22 @@ void invert_bits() {
   }
 }
 
+
+DumbDisplay dumbdisplay(new DDWiFiServerIO(WIFI_SSID, WIFI_PASSWORD));
+JoystickDDLayer *joystickLayer;
+
+const size_t JOYSTICK_SIZE = 240;
+
+
 void setup() {
   Serial.begin(115200);
   matrix.begin();
 
+  // create a joystick layer
   joystickLayer = dumbdisplay.createJoystickLayer(JOYSTICK_SIZE - 1);
   joystickLayer->border(3, "darkblue", "round", 1);
 
+  // turn on bit 0
   set_bit(0, true);
   matrix.loadFrame(frame);
 }
@@ -42,6 +45,7 @@ int prev_bit = 0;
 void loop() {
   const DDFeedback* fb = joystickLayer->getFeedback();
   if (fb != NULL) {
+    // got "feedback" (i.e. joystick moved)
     size_t x = int((fb->x * 12) / (double) JOYSTICK_SIZE);
     size_t y = int((fb->y * 8) / (double) JOYSTICK_SIZE);
     size_t bit = x + y * 12;

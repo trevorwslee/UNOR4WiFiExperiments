@@ -3,7 +3,6 @@
 ArduinoLEDMatrix matrix;
 
 
-
 unsigned long frame[] = { 0, 0, 0 };  // 3 32-bit unsigned longs can holds 96 bits
 
 void set_bit(size_t bit, bool on) {
@@ -27,17 +26,26 @@ void setup() {
   matrix.begin();
 }
 
-int bit = -1;
+int bit = -1;  // the bit last turned on
+
 void loop() {
   if (bit != -1) {
+    // turn off last bit
     set_bit(bit, false);
   }
+
+  // advance bit
   if (bit == -1) {
     bit = 0;
   } else {
     bit = (bit + 1) % 96;
   }
+
+  // turn on bit
   set_bit(bit, true);
+
+  // load the frame (bits)
   matrix.loadFrame(frame);
+  
   delay(500);
 }
