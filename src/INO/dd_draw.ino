@@ -6,7 +6,8 @@ DumbDisplay dumbdisplay(new DDWiFiServerIO(WIFI_SSID, WIFI_PASSWORD));
 
 // will be created in setup()
 LedGridDDLayer *ddMatrix;
-
+LcdDDLayer *clearBtn;
+LcdDDLayer *logBtn;
 
 ArduinoLEDMatrix matrix;
 
@@ -35,12 +36,29 @@ void setup() {
   matrix.loadFrame(frame);
 
   ddMatrix = dumbdisplay.createLedGridLayer(12, 8);
-  ddMatrix->border(0.3, DD_COLOR_azure);
+  ddMatrix->border(0.3, DD_COLOR_darkblue);
   ddMatrix->padding(0.2);
   ddMatrix->onColor(DD_COLOR_red);  
   ddMatrix->offColor(DD_COLOR_lightgray);
   ddMatrix->backgroundColor(DD_COLOR_black);
   ddMatrix->enableFeedback("fa");
+
+  clearBtn = dumbdisplay.createLcdLayer(7, 1);
+  clearBtn->border(1, DD_COLOR_gray, "raised");
+  clearBtn->backgroundColor(DD_COLOR_lightgray);
+  clearBtn->enableFeedback("fl");
+  clearBtn->writeCenteredLine("CLEAR");
+
+  logBtn = dumbdisplay.createLcdLayer(5, 1);
+  logBtn->border(1, DD_COLOR_gray, "raised");
+  logBtn->backgroundColor(DD_COLOR_lightgray);
+  logBtn->enableFeedback("fl");
+  logBtn->writeCenteredLine("LOG");
+ 
+  dumbdisplay.configAutoPin(DD_AP_VERT_2(
+    ddMatrix->getLayerId(),
+    DD_AP_HORI_2(clearBtn->getLayerId(),logBtn->getLayerId())
+  ));
 
   size_t bit = 0;
   for (int y = 0; y < 8; y++) {
@@ -59,32 +77,27 @@ void setup() {
     ddMatrix->bitwise(bits, y, true);
     bit += 12;
   }
-
-  dumbdisplay.writeComment("***");
-  dumbdisplay.writeComment("* long-press to clear");
-  dumbdisplay.writeComment("***");
 }
 
 void loop() {
-  const DDFeedback* fb = ddMatrix->getFeedback();
-  if (fb != NULL) {
-    if (fb->type == LONGPRESS) {
+  if (clearBtn->getFeedback()) {
       ddMatrix->clear();
       for (int i = 0; i < 3; i++) {
         frame[i] = 0;
       }
       matrix.loadFrame(frame);
-    } else {
-      int x = fb->x;
-      int y = fb->y;
-      ddMatrix->toggle(x, y);
-      toggle_bit(x, y);
-      matrix.loadFrame(frame);
-    }
-    if (true) {
-      String frameCode = "unsigned long frame[] = {0x" + String(frame[0], HEX) + ",0x" + String(frame[1], HEX) + ",0x" + String(frame[2], HEX) + "};";
-      dumbdisplay.writeComment(frameCode);
-    }
+  }
+  if (logBtn->getFeedback()) {
+    String frameCode = "{0x" + String(frame[0], HEX) + ",0x" + String(frame[1], HEX) + ",0x" + String(frame[2], HEX) + "}";
+    dumbdisplay.writeComment(frameCode);
+  }
+  const DDFeedback* fb = ddMatrix->getFeedback();
+  if (fb != NULL) {
+    int x = fb->x;
+    int y = fb->y;
+    ddMatrix->toggle(x, y);
+    toggle_bit(x, y);
+    matrix.loadFrame(frame);
   }
 }
 
