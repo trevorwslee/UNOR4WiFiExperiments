@@ -2,21 +2,26 @@
 #include "wifidumbdisplay.h"
 
 // DumbDisplay using WIFI
+// . assume the macros WIFI_SSID and WIFI_PASSWORD for WIFI SSID and WIFI password respectively 
 DumbDisplay dumbdisplay(new DDWiFiServerIO(WIFI_SSID, WIFI_PASSWORD));
 
-// will be created in setup()
+// the following layers will be created in setup()
 LedGridDDLayer *ddMatrix;
 LcdDDLayer *clearBtn;
 LcdDDLayer *logBtn;
 
+
+// UNO R4 matrix object
 ArduinoLEDMatrix matrix;
 
+// UNO R4 matrix frame data
 unsigned long frame[] = {
   0x3184a444,
   0x42081100,
   0xa0040000
 };
 
+// toggle the frame bit @ position x, y
 void toggle_bit(size_t x, size_t y) {
   size_t bit = x + y * 12;
   int index = bit / 32;
@@ -81,18 +86,21 @@ void setup() {
 
 void loop() {
   if (clearBtn->getFeedback()) {
-      ddMatrix->clear();
-      for (int i = 0; i < 3; i++) {
-        frame[i] = 0;
-      }
-      matrix.loadFrame(frame);
+    // CLEAR button clicked ==> clear the DD matrix as well as the UNO R4 matrix
+    ddMatrix->clear();
+    for (int i = 0; i < 3; i++) {
+      frame[i] = 0;
+    }
+    matrix.loadFrame(frame);
   }
   if (logBtn->getFeedback()) {
+    // LOG button clicked ==> log the frame data to DumbDisplay app as comment
     String frameCode = "{0x" + String(frame[0], HEX) + ",0x" + String(frame[1], HEX) + ",0x" + String(frame[2], HEX) + "}";
     dumbdisplay.writeComment(frameCode);
   }
   const DDFeedback* fb = ddMatrix->getFeedback();
   if (fb != NULL) {
+    // DD matrix clicked, toggle the LED of the DD matrix as well as the UNO R4 matrix at the clicked position
     int x = fb->x;
     int y = fb->y;
     ddMatrix->toggle(x, y);
