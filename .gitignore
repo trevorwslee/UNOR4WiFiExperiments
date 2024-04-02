@@ -1,3 +1,5 @@
 .pio
 .vscode
 src/secret.h
+src/INO/dd_draw/secret.h
+src/INO/dd_joystick_test/secret.h

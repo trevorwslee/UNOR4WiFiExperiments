@@ -1,5 +1,6 @@
 #include "Arduino_LED_Matrix.h"
 #include "wifidumbdisplay.h"
+#include "secret.h"
 
 // DumbDisplay using WIFI
 // . assume the macros WIFI_SSID and WIFI_PASSWORD for WIFI SSID and WIFI password respectively 

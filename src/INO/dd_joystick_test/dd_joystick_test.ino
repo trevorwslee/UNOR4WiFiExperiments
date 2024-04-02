@@ -1,5 +1,7 @@
 #include "Arduino_LED_Matrix.h"
 #include "wifidumbdisplay.h"
+#include "secret.h"
+
 
 ArduinoLEDMatrix matrix;
 
