@@ -16,7 +16,7 @@ LcdDDLayer *logBtn;
 ArduinoLEDMatrix matrix;
 
 // UNO R4 matrix frame data
-unsigned long frame[] = {
+uint32_t frame[] = {
   0x3184a444,
   0x42081100,
   0xa0040000

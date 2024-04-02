@@ -5,7 +5,7 @@
 
 ArduinoLEDMatrix matrix;
 
-unsigned long frame[] = { 0, 0, 0 };  // 3 32-bit unsigned longs can holds 96 bits
+uint32_t frame[] = { 0, 0, 0 };  // 3 uint32_t can holds 96 bits
 
 void set_bit(size_t bit, bool on) {
   int index = bit / 32;
