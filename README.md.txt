@@ -271,7 +271,6 @@ Once connected, you should see the virtual joystick displayed
 ![dd_joystick.png](imgs/dd_joystick.png)
 
 Moving the joystick should move the turned on LED of your Arduino UNO R4 WiFi LED matrix
-<<<<<<< HEAD
 
 
 # Another Simple Remote UI to Draw on the LED Matrix
@@ -338,5 +337,3 @@ void loop(){
 
 
 
-=======
->>>>>>> a7dffeb4de322b4f58cdd0db165c0f260860ee33
