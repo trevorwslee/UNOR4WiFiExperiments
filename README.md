@@ -3,7 +3,7 @@ title: Arduino UNO R4 WiFi Experiments
 published: false
 description: A simple test article (updated)
 tags: 'productivity, beginners, test'
-cover_image: ./imgs/cat.png
+cover_image: ./imgs/cat.jpg
 canonical_url: null
 ---
 
