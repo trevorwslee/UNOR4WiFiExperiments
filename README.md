@@ -278,9 +278,9 @@ Moving the joystick should move the turned on LED of your Arduino UNO R4 WiFi LE
 The sketch for the captioned UI is a bit longer, and hence will not be listed here.
 Instead, you can download the sketch `src/INO/dd_draw/dd_draw.ino` [here](https://github.com/trevorwslee/UNOR4WiFiExperiments/blob/main/src/INO/dd_draw/dd_draw.ino)
 
-*Alternatively, you can clone the complete repo [UNOR4WiFiExperiments](https://github.com/trevorwslee/UNOR4WiFiExperiments) for all sketch mentioned*
+*Alternatively, you can clone the complete repo [UNOR4WiFiExperiments](https://github.com/trevorwslee/UNOR4WiFiExperiments) for all sketches mentioned*
 
-I guess by now, you will be aware that all you need to switch the PlatformIO program to target for another sketch is simply to change `src/main.cpp`, like
+I guess by now, you will be aware that all you need to switch the PlatformIO project to target for another sketch is simply to change `src/main.cpp`, like
 ```
 #include <Arduino.h>
 //#include "INO/matrix_test/matrix_test.ino"
@@ -289,7 +289,7 @@ I guess by now, you will be aware that all you need to switch the PlatformIO pro
 #include "INO/dd_draw/dd_draw.ino"
 ```
 
-And the resulting UI on DumbDisplay app will present you with a canvas for you to draw [dots], which of cause will synchronized with your Arduino UNO R4 WiFi LED matrix.
+And the resulting UI on DumbDisplay app will present you with a canvas for you to draw [dots], which of cause will be synchronized with your Arduino UNO R4 WiFi LED matrix.
 
 ![dd_draw.png](imgs/dd_draw.png)
 
@@ -297,11 +297,10 @@ And the resulting UI on DumbDisplay app will present you with a canvas for you t
 - **LOG** -- show the "frame" on the "terminal" of DumbDisplay app , e.g. `// {0x44444444,0x7c44444,0x44444444}`
 
 Tips:
-- By default, DumbDisplay app will show the "commands" sent to it. You can turn this off with menu "Show Commands"
-- You can share the text on the "terminal" to other apps with menu "Share Terminal Text"
+- By default, DumbDisplay app will show the "commands" sent to it to the "terminal". You can turn this off with the menu "Show Commands"
+- You can share the text on the "terminal" to other apps with the menu "Share Terminal Text"
 
-Since the UI allows you to draw "frame" by "frame", with some work (maybe some hard work), you can create an animation of on the LED matrix, 
-like the sketch `src/INO/frames/frames.ino`
+Since the UI allows you to draw "frame" by "frame", with some work (maybe some hard work), you can create an animation to be displayed on the LED matrix, like the sketch `src/INO/frames/frames.ino`
 
 ```
 #include "Arduino_LED_Matrix.h"
