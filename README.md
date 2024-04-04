@@ -11,7 +11,7 @@ id: 1810998
 ![arduino_uno_r4_wifi.png](imgs/arduino_uno_r4_wifi.png)
 
 
-With this work, I hope to demonstrate my Arduino UNO R4 WiFi experiments with the microcontroller board's LED matrix, starting from simply turning on/off each one of the LEDs, to having a simple remote UI for controlling the LEDs of the matrix, using an Android app (DumeDisplay) connected using the microcontroller board's WiFi support. 
+With this work, I hope to demonstrate my Arduino UNO R4 WiFi experiments with the microcontroller board's LED matrix, starting from simply turning on/off each one of the LEDs, to having a simple remote UI for controlling the LEDs of the matrix, using an Android app (DumbDisplay) connected using the microcontroller board's WiFi support. 
 
 The microcontroller programs here are Arduino sketches developed using VSCode with PlatformIO, in the similar fashion as described by the post -- [A Way to Run Arduino Sketch With VSCode PlatformIO Directly](https://www.instructables.com/A-Way-to-Run-Arduino-Sketch-With-VSCode-PlatformIO/).
 
@@ -104,7 +104,7 @@ void set_bit(size_t bit, bool on) {
 ...
 ```  
 
-Accordingly, lets try to turn on/off each of the LEDs one by one with sketch `src/INO/matrix_obo_test/matrix_obo_test.ino`
+Accordingly, let's try to turn on/off each of the LEDs one by one with sketch `src/INO/matrix_obo_test/matrix_obo_test.ino`
 
 # Turing the LEDs On/Off One-by-One
 
@@ -181,7 +181,7 @@ To build and upload the sketch above, you will need to modify `src/main.cpp` as 
 
 # A Simple Remote Virtual Joystick to Control the LEDs
 
-Lets do something, hopefully, more interesting -- use a Joystick to control the LEDs, but use a virtual one, and remotely on your Android phone, with the help of DumbDisplay. 
+Let's do something, hopefully, more interesting -- use a Joystick to control the LEDs, but use a virtual one, and remotely on your Android phone, with the help of DumbDisplay. 
 
 *For some background of DumbDisplay, you may want to refer to the post [Blink Test With Virtual Display, DumbDisplay](https://www.instructables.com/Blink-Test-With-Virtual-Display-DumbDisplay/)* 
 

@@ -38,9 +38,12 @@ void toggle_bit(size_t x, size_t y) {
 
 void setup() {
   Serial.begin(115200);
+  // init for using UNO R4 matrix
   matrix.begin();
+  // load whatever in frame data
   matrix.loadFrame(frame);
 
+  // create the correspond DD "canvas" for the UNO R4 matrix
   ddMatrix = dumbdisplay.createLedGridLayer(12, 8);
   ddMatrix->border(0.3, DD_COLOR_darkblue);
   ddMatrix->padding(0.2);
@@ -49,23 +52,27 @@ void setup() {
   ddMatrix->backgroundColor(DD_COLOR_black);
   ddMatrix->enableFeedback("fa");
 
+  // create the CLEAR "button"
   clearBtn = dumbdisplay.createLcdLayer(7, 1);
   clearBtn->border(1, DD_COLOR_gray, "raised");
   clearBtn->backgroundColor(DD_COLOR_lightgray);
   clearBtn->enableFeedback("fl");
   clearBtn->writeCenteredLine("CLEAR");
 
+  // create the LOG "button"
   logBtn = dumbdisplay.createLcdLayer(5, 1);
   logBtn->border(1, DD_COLOR_gray, "raised");
   logBtn->backgroundColor(DD_COLOR_lightgray);
   logBtn->enableFeedback("fl");
   logBtn->writeCenteredLine("LOG");
  
+  // auto pin the DD layers in the desired way
   dumbdisplay.configAutoPin(DD_AP_VERT_2(
     ddMatrix->getLayerId(),
     DD_AP_HORI_2(clearBtn->getLayerId(),logBtn->getLayerId())
   ));
 
+  // copy the frame data to the DD "canvas"
   size_t bit = 0;
   for (int y = 0; y < 8; y++) {
     int index = bit / 32;
@@ -87,7 +94,7 @@ void setup() {
 
 void loop() {
   if (clearBtn->getFeedback()) {
-    // CLEAR button clicked ==> clear the DD matrix as well as the UNO R4 matrix
+    // CLEAR "button" clicked ==> clear the DD matrix as well as the UNO R4 matrix
     ddMatrix->clear();
     for (int i = 0; i < 3; i++) {
       frame[i] = 0;
@@ -95,13 +102,13 @@ void loop() {
     matrix.loadFrame(frame);
   }
   if (logBtn->getFeedback()) {
-    // LOG button clicked ==> log the frame data to DumbDisplay app as comment
+    // LOG "button" clicked ==> log the frame data to DumbDisplay app as comment
     String frameCode = "{0x" + String(frame[0], HEX) + ",0x" + String(frame[1], HEX) + ",0x" + String(frame[2], HEX) + "}";
     dumbdisplay.writeComment(frameCode);
   }
   const DDFeedback* fb = ddMatrix->getFeedback();
   if (fb != NULL) {
-    // DD matrix clicked, toggle the LED of the DD matrix as well as the UNO R4 matrix at the clicked position
+    // DD "canvas" clicked, toggle the dot on the DD "canvas", as well as the UNO R4 matrix at the clicked position
     int x = fb->x;
     int y = fb->y;
     ddMatrix->toggle(x, y);
