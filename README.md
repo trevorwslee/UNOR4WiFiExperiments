@@ -1,10 +1,11 @@
 ---
 title: Arduino UNO R4 WiFi Experiments
 published: false
-description: A simple test article (updated)
-tags: 'productivity, beginners, test'
+description: Some experiments with Arduino UNO R4 WiFi, and with DumbDisplay
+tags: 'arduino'
 cover_image: ./imgs/cat.jpg
 canonical_url: null
+id: 1810998
 ---
 
 
