@@ -1,7 +1,7 @@
 ---
 title: Arduino UNO R4 WiFi Experiments
 published: false
-tags: 'arduino_uno_r4_wifi, arduino, platformio'
+tags: 'arduino, platformio'
 id: 1810998
 ---
 
