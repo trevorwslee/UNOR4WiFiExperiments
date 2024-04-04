@@ -6,11 +6,9 @@ id: 1810998
 ---
 
 
+# Arduino UNO R4 WiFi Experiments
 
 ![arduino_uno_r4_wifi.png](imgs/arduino_uno_r4_wifi.png)
-
-
-# Arduino UNO R4 WiFi Experiments
 
 
 With this work, I hope to demonstrate my Arduino UNO R4 WiFi experiments with the microcontroller board's LED matrix, starting from simply turning on/off each one of the LEDs, to having a simple remote UI for controlling the LEDs of the matrix, using an Android app (DumeDisplay) connected using the microcontroller board's WiFi support. 
@@ -273,3 +271,69 @@ Once connected, you should see the virtual joystick displayed
 ![dd_joystick.png](imgs/dd_joystick.png)
 
 Moving the joystick should move the turned on LED of your Arduino UNO R4 WiFi LED matrix
+
+
+# Another Simple Remote UI to Draw on the LED Matrix
+
+The sketch for the captioned UI is a bit longer, and hence will not be listed here.
+Instead, you can download the sketch `src/INO/dd_draw/dd_draw.ino` [here](https://github.com/trevorwslee/UNOR4WiFiExperiments/blob/main/src/INO/dd_draw/dd_draw.ino)
+
+*Alternatively, you can clone the complete repo [UNOR4WiFiExperiments](https://github.com/trevorwslee/UNOR4WiFiExperiments) for all sketch mentioned*
+
+I guess by now, you will be aware that all you need to switch the PlatformIO program to target for another sketch is simply to change `src/main.cpp`, like
+```
+#include <Arduino.h>
+//#include "INO/matrix_test/matrix_test.ino"
+//#include "INO/matrix_obo_test/matrix_obo_test.ino"
+//#include "INO/dd_joystick_test/dd_joystick_test.ino"
+#include "INO/dd_draw/dd_draw.ino"
+```
+
+And the resulting UI on DumbDisplay app will present you with a canvas for you to draw [dots], which of cause will synchronized with your Arduino UNO R4 WiFi LED matrix.
+
+![dd_draw.png](imgs/dd_draw.png)
+
+- **CLEAR** -- clear the dots
+- **LOG** -- show the "frame" on the "terminal" of DumbDisplay app , e.g. `// {0x44444444,0x7c44444,0x44444444}`
+
+Tips:
+- By default, DumbDisplay app will show the "commands" sent to it. You can turn this off with menu "Show Commands"
+- You can share the text on the "terminal" to other apps with menu "Share Terminal Text"
+
+Since the UI allows you to draw "frame" by "frame", with some work (maybe some hard work), you can create an animation of on the LED matrix, 
+like the sketch `src/INO/frames/frames.ino`
+
+```
+#include "Arduino_LED_Matrix.h"
+ArduinoLEDMatrix matrix;
+void setup() {
+  Serial.begin(115200);
+  matrix.begin();
+}
+const uint32_t frames[][3] = {
+  {0x20020020,0x2002002,0x200200},
+  {0x20020020,0x3e02002,0x200200},
+  {0x22022022,0x3e02202,0x20220220},
+  {0x22422422,0x3e02202,0x20220220},
+  {0x22422422,0x3e42242,0x24224224},
+};
+const size_t num_frames = sizeof(frames) / sizeof(frames[0]);
+int frame_index = 0;  
+void loop(){
+  matrix.loadFrame(frames[frame_index]);
+  delay(500);
+  frame_index = (frame_index + 1) % num_frames;
+}
+```
+
+
+# Enjoy!
+
+> Peace be with you!
+> May God bless you!
+> Jesus loves you!
+> Amazing Grace!
+
+
+
+
