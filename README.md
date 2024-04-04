@@ -270,6 +270,6 @@ On your Android phone side
 
 Once connected, you should see the virtual joystick displayed
 
-<img src="imgs/dd_joystick.png" width="200"/>
+![dd_joystick.png](imgs/dd_joystick.png)
 
 Moving the joystick should move the turned on LED of your Arduino UNO R4 WiFi LED matrix
