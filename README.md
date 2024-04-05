@@ -11,7 +11,7 @@ id: 1810998
 ![arduino_uno_r4_wifi.png](imgs/arduino_uno_r4_wifi.png)
 
 
-With this [project](https://github.com/trevorwslee/UNOR4WiFiExperiments), I hope to demonstrate my Arduino UNO R4 WiFi experiments with the microcontroller board's LED matrix, starting from simply turning on/off each one of the LEDs, to having a simple remote UI for controlling the LEDs of the matrix, using an Android app (DumbDisplay) connected using the microcontroller board's WiFi support. 
+With this [project](https://github.com/trevorwslee/UNOR4WiFiExperiments), I hope to demonstrate my Arduino UNO R4 WiFi experiments with the microcontroller board's LED matrix, starting from simply turning on/off each one of the LEDs, to having a simple remote UI for controlling the LEDs of the matrix, using an Android app -- DumbDisplay -- connected using the microcontroller board's WiFi support. 
 
 The microcontroller programs here are Arduino sketches developed using VSCode with PlatformIO, in the similar fashion as described by the post -- [A Way to Run Arduino Sketch With VSCode PlatformIO Directly](https://www.instructables.com/A-Way-to-Run-Arduino-Sketch-With-VSCode-PlatformIO/).
 
@@ -37,7 +37,7 @@ lib_deps =
 ```
 Notes:
 * `UNOR4` is simply the name of the "PlatformIO Project Environment"
-* The section `monitor_speed` specifies the baud-rate for the PlatformIO's Serial Monitor to be `115200`
+* The section `monitor_speed` specifies the baud rate for the PlatformIO's Serial Monitor to be `115200`
 * The section `lib_deps` specifies that the project will be depending on the [DumbDisplay Arduino Library](https://github.com/trevorwslee/Arduino-DumbDisplay)
 
 The file `src/main.cpp` should simply be the two lines like
@@ -288,7 +288,7 @@ I guess by now, you will realize that all you need to switch the PlatformIO proj
 #include "INO/dd_draw/dd_draw.ino"
 ```
 
-And the resulting UI on DumbDisplay app will present you with a canvas for you to draw dots, which of cause will be synchronized to your Arduino UNO R4 WiFi LED matrix.
+And the resulting UI on DumbDisplay app will present you with a canvas for you to draw dots, which of course will be synchronized to your Arduino UNO R4 WiFi LED matrix.
 
 ![dd_draw.png](imgs/dd_draw.png)
 
