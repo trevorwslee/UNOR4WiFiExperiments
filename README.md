@@ -1,7 +1,7 @@
 ---
 title: Arduino UNO R4 WiFi Experiments
-published: false
-tags: 'arduino, platformio'
+published: true
+tags: 'arduino-uno-r4-wifi, arduino, platformio'
 id: 1810998
 ---
 
@@ -11,7 +11,7 @@ id: 1810998
 ![arduino_uno_r4_wifi.png](imgs/arduino_uno_r4_wifi.png)
 
 
-With this work, I hope to demonstrate my Arduino UNO R4 WiFi experiments with the microcontroller board's LED matrix, starting from simply turning on/off each one of the LEDs, to having a simple remote UI for controlling the LEDs of the matrix, using an Android app (DumbDisplay) connected using the microcontroller board's WiFi support. 
+With this [project](https://github.com/trevorwslee/UNOR4WiFiExperiments), I hope to demonstrate my Arduino UNO R4 WiFi experiments with the microcontroller board's LED matrix, starting from simply turning on/off each one of the LEDs, to having a simple remote UI for controlling the LEDs of the matrix, using an Android app (DumbDisplay) connected using the microcontroller board's WiFi support. 
 
 The microcontroller programs here are Arduino sketches developed using VSCode with PlatformIO, in the similar fashion as described by the post -- [A Way to Run Arduino Sketch With VSCode PlatformIO Directly](https://www.instructables.com/A-Way-to-Run-Arduino-Sketch-With-VSCode-PlatformIO/).
 
@@ -299,7 +299,7 @@ Tips:
 - By default, DumbDisplay app will show the "commands" sent to it to the "terminal". You can turn this off with the menu "Show Commands"
 - You can share the text on the "terminal" to other apps with the menu "Share Terminal Text"
 
-Since the UI allows you to draw "frame" by "frame", with some work (maybe some hard work), you can create an animation to be displayed on the LED matrix, like the sketch `src/INO/frames/frames.ino`
+Since the UI allows you to draw "frame" by "frame", with some work (maybe some hard work), you can create some basic animation to be displayed on the LED matrix, like the sketch `src/INO/frames/frames.ino`
 
 ```
 #include "Arduino_LED_Matrix.h"
