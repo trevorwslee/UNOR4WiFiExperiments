@@ -154,7 +154,7 @@ Notice that as it is looping through, the bit (turned on previously) is first tu
   }
 ```
 
-Then the bit is advanced to next bit, and turn on
+Then the bit is advanced to next bit, and turned on
 ```
   // advance bit
   if (bit == -1) {
@@ -166,7 +166,7 @@ Then the bit is advanced to next bit, and turn on
   set_bit(bit, true);
 ```
 
-Finally, the "frame" is loaded and display on the LED matrix
+Finally, the "frame" is loaded and displayed on the LED matrix
 ```
   // load the frame (bits)
   matrix.loadFrame(frame);
@@ -181,9 +181,9 @@ To build and upload the sketch above, you will need to modify `src/main.cpp` as 
 
 # A Simple Remote Virtual Joystick to Control the LEDs
 
-Let's do something, hopefully, more interesting -- use a Joystick to control the LEDs, but use a virtual one, and remotely on your Android phone, with the help of DumbDisplay. 
+Let's do something, hopefully, more interesting -- use a Joystick to control the LEDs, but a virtual one, and remotely on your Android phone, with the help of DumbDisplay. 
 
-*For some background of DumbDisplay, you may want to refer to the post [Blink Test With Virtual Display, DumbDisplay](https://www.instructables.com/Blink-Test-With-Virtual-Display-DumbDisplay/)* 
+*For some little background on DumbDisplay, you may want to refer to the post [Blink Test With Virtual Display, DumbDisplay](https://www.instructables.com/Blink-Test-With-Virtual-Display-DumbDisplay/)* 
 
 Note that the connection between Arduino UNO R4 WiFi and DumbDisplay Android app will be WIFI. Hence, you will first need to define macros for your WIFI credentials
 
@@ -249,13 +249,13 @@ To build and upload the sketch above, you will need to modify `src/main.cpp` as 
 #include "INO/dd_joystick_test/dd_joystick_test.ino"
 ```
 
-When the sketch is running, please turn to the Serial Monitor, there you should see log lines like
+When the sketch is running, please turn to the Serial Monitor. There you should see log lines like
 ```
 listening on 192.168.0.2:10201 ...
 listening on 192.168.0.2:10201 ...
 listening on 192.168.0.2:10201 ...
 ```
-which shows the IP address (and port) on which your Arduino UNO R4 WiFi is listening.
+which shows the network IP address (and port) on which your Arduino UNO R4 WiFi is listening.
 
 Your IP will likely be different than what shown above. Note down the IP address shown. You will need this IP for DumbDisplay WIFI connection. 
 
@@ -275,12 +275,11 @@ Moving the joystick should move the turned on LED of your Arduino UNO R4 WiFi LE
 
 # Another Simple Remote UI to Draw on the LED Matrix
 
-The sketch for the captioned UI is a bit longer, and hence will not be listed here.
-Instead, you can download the sketch `src/INO/dd_draw/dd_draw.ino` [here](https://github.com/trevorwslee/UNOR4WiFiExperiments/blob/main/src/INO/dd_draw/dd_draw.ino)
+The sketch for the captioned UI is a bit longer, and hence will not be listed here. Instead, you can download the sketch `src/INO/dd_draw/dd_draw.ino` [here](https://github.com/trevorwslee/UNOR4WiFiExperiments/blob/main/src/INO/dd_draw/dd_draw.ino)
 
 *Alternatively, you can clone the complete repo [UNOR4WiFiExperiments](https://github.com/trevorwslee/UNOR4WiFiExperiments) for all sketches mentioned*
 
-I guess by now, you will be aware that all you need to switch the PlatformIO project to target for another sketch is simply to change `src/main.cpp`, like
+I guess by now, you will realize that all you need to switch the PlatformIO project to target for another sketch is simply to change `src/main.cpp`, like
 ```
 #include <Arduino.h>
 //#include "INO/matrix_test/matrix_test.ino"
@@ -289,7 +288,7 @@ I guess by now, you will be aware that all you need to switch the PlatformIO pro
 #include "INO/dd_draw/dd_draw.ino"
 ```
 
-And the resulting UI on DumbDisplay app will present you with a canvas for you to draw [dots], which of cause will be synchronized with your Arduino UNO R4 WiFi LED matrix.
+And the resulting UI on DumbDisplay app will present you with a canvas for you to draw dots, which of cause will be synchronized to your Arduino UNO R4 WiFi LED matrix.
 
 ![dd_draw.png](imgs/dd_draw.png)
 
@@ -325,6 +324,7 @@ void loop(){
 }
 ```
 
+![hi_uno_r4_wifi.gif](imgs/hi_uno_r4_wifi.gif)
 
 # Enjoy!
 
